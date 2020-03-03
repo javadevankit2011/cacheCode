@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Show results</title>
+<script type="text/javascript" src="jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#showId").click(function(){
+
+			var user = document.getElementById('userId').value;
+			 $.ajax({
+                 dataType: "json",
+                 url: "rest/service/" + user
+             }).done(function(data){
+					$.each(data, function (i, search) {
+						$("#showResult").append(i + ': ' + search);
+						$("#showResult").append("<br>");
+                    });
+	                 });
+
+		});
+	
+});			
+</script>
+</head>
+<body>
+	<div align="center">
+		
+			User : <input type ="text" id="userId"><br>
+			<input type="button" value="Show" id="showId">
+	</div>
+	<div align="center" id="showResult"></div>
+
+</body>
+</html>
